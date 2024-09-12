@@ -49,13 +49,12 @@ void Client::sendMessage(const std::string& message) const {
 }
 
 std::string Client::receiveMessage() const {
-    char buffer[1024] = {0};
-    int bytes_received = recv(client_socket, buffer, 1024, 0);
+    char buffer[2048] = {0};
+    int bytes_received = recv(client_socket, buffer, 2048 , 0);
     if (bytes_received > 0) {
         return std::string(buffer, bytes_received);
-    } else {
-        return "";
     }
+    return "";
 }
 
 void Client::closeConnection() const {
